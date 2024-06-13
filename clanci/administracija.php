@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +9,9 @@
     <title>Administracija</title>
 </head>
 
-<?php session_start();
-include '../header.php'; 
+<?php include '../connect.php';
+session_start();
+include '../header.php';
 
 echo "<div class='flex justify-center'>";
 //redirectanje korisnika ukoliko nije admin 
@@ -24,10 +23,43 @@ if (isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESSIO
 ?>
 </div>
 
+<div class="flex justify-center">
+    <?php    //AKO JE STISNUT GUMB IZBRIŠI:
+    if (isset($_POST['delete'])) {
+        $id = $_POST['id'];
+        $query = "DELETE FROM clanak WHERE id=$id";
+        $result = mysqli_query($dbc, $query);
+    }
+
+    //AKO JE STISNUT GUMB IZMJENI
+    if (isset($_POST['update'])) {
+        $picture = $_FILES['photo']['name'];
+        $title = $_POST['title'];
+        $about = $_POST['about'];
+        $content = $_POST['content'];
+        $category = $_POST['category'];
+        $archive = isset($_POST['archive']) ? 1 : 0;
+
+        $target_dir = '../forma/uploads/' . $picture;
+        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_dir);
+
+        $id = $_POST['id'];
+        $query = "UPDATE clanak SET naslov=?, sazetak=?, tekst=?, slika=?, kategorija=?, arhiva=? WHERE id=$id";
+        $stmt = mysqli_stmt_init($dbc);
+        if (mysqli_stmt_prepare($stmt, $query)) {
+            mysqli_stmt_bind_param($stmt, 'sssssd', $title, $about, $content, $picture, $category, $archive);
+            if (mysqli_stmt_execute($stmt)) {
+                echo "Članak je uspješno ažuriran!";
+            } else {
+                echo "Izbio je problem kod ažuriranja članka. Molim vas pokušajte ponovno.";
+            }
+        }
+    } ?>
+</div>
+
 <body class="bg-black text-white mx-auto w-fit">
 
     <?php
-    include '../connect.php';
     define('UPLPATH', '../forma/uploads/');
 
     $query = "SELECT * FROM clanak";
@@ -102,38 +134,6 @@ if (isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESSIO
             </div>
         </form>
     <?php
-    }
-
-    //AKO JE STISNUT GUMB IZBRIŠI:
-    if (isset($_POST['delete'])) {
-        $id = $_POST['id'];
-        $query = "DELETE FROM clanak WHERE id=$id";
-        $result = mysqli_query($dbc, $query);
-    }
-
-    //AKO JE STISNUT GUMB IZMJENI
-    if (isset($_POST['update'])) {
-        $picture = $_FILES['photo']['name'];
-        $title = $_POST['title'];
-        $about = $_POST['about'];
-        $content = $_POST['content'];
-        $category = $_POST['category'];
-        $archive = isset($_POST['archive']) ? 1 : 0;
-
-        $target_dir = '../forma/uploads/' . $picture;
-        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_dir);
-
-        $id = $_POST['id'];
-        $query = "UPDATE clanak SET naslov=?, sazetak=?, tekst=?, slika=?, kategorija=?, arhiva=? WHERE id=$id";
-        $stmt = mysqli_stmt_init($dbc);
-        if (mysqli_stmt_prepare($stmt, $query)) {
-            mysqli_stmt_bind_param($stmt, 'sssssd', $title, $about, $content, $picture, $category, $archive);
-            if (mysqli_stmt_execute($stmt)) {
-                echo "Članak je uspješno ažuriran!";
-            } else {
-                echo "Izbio je problem kod ažuriranja članka. Molim vas pokušajte ponovno.";
-            }
-        }
     }
     ?>
 

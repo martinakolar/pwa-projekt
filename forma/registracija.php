@@ -70,35 +70,35 @@ session_start(); ?>
             <div class="form-item">
                 <label for="ime">Ime</label>
                 <div class="form-field">
-                    <input type="text" id="ime" name="ime" class="form-field-textual" required>
+                    <input type="text" id="ime" name="ime" class="text-black p-2" required>
                 </div>
             </div>
 
             <div class="form-item">
                 <label for="prezime">Prezime</label>
                 <div class="form-field">
-                    <input type="text" id="prezime" name="prezime" class="form-field-textual" required>
+                    <input type="text" id="prezime" name="prezime" class="text-black p-2" required>
                 </div>
             </div>
 
             <div class="form-item">
                 <label for="korisnicko_ime">Korisničko ime</label>
                 <div class="form-field">
-                    <input type="text" id="korisnicko_ime" name="korisnicko_ime" class="form-field-textual" required>
+                    <input type="text" id="korisnicko_ime" name="korisnicko_ime" class="text-black p-2" required>
                 </div>
             </div>
 
             <div class="form-item">
                 <label for="password">Lozinka</label>
                 <div class="form-field">
-                    <input type="password" id="password" name="password" class="form-field-textual" required>
+                    <input type="password" id="password" name="password" class="text-black p-2" required>
                 </div>
             </div>
 
             <div class="form-item">
                 <label for="password1">Ponovite lozinku</label>
                 <div class="form-field">
-                    <input type="password" id="password1" name="password1" class="form-field-textual" required>
+                    <input type="password" id="password1" name="password1" class="text-black p-2" required>
                 </div>
             </div>
 

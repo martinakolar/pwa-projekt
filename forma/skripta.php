@@ -56,25 +56,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Prikaz artikla</title>
 </head>
 
-<body>
+<body class="bg-black text-white">
     <?php include '../header.php'; ?>
 
-    <!-- Prikaz vijesti -->
-    <main>
-        <h1>Prikaz vijesti</h1>
-        <article>
+    <!-- Prikaz članka -->
+    <main class="max-w-screen-md mx-auto flex flex-col gap-y-5">
+        <h1 class="text-red-500 text-xl font-semibold">Prikaz članka</h1>
+        <article class="flex flex-col gap-y-5">
             <p><strong>Kategorija:</strong> <?php echo htmlspecialchars($category); ?></p>
-            <h2><?php echo htmlspecialchars($title); ?></h2>
-            <p><?php echo "AUTOR:"; ?></p>
-            <p><?php echo "OBJAVLJENO:"; ?></p>
+            <h2><strong><?php echo "Naslov: </strong>" . htmlspecialchars($title); ?></h2>
+            <p><strong><?php echo "Objavljeno: </strong>" . htmlspecialchars($mysqldate); ?></p>
             <p><strong>Slika:</strong></p>
-            <img src="<?php echo htmlspecialchars($target_file); ?>" alt="Slika vijesti" style="max-width: 300px;">
+            <img src="<?php echo htmlspecialchars($target_file); ?>" alt="Slika članka" style="max-width: 300px;">
             <p><strong>Kratki sadržaj:</strong> <?php echo htmlspecialchars($about); ?></p>
             <p><strong>Sadržaj:</strong> <?php echo htmlspecialchars($content); ?></p>
-            <p><strong>Prikazati na stranici:</strong> <?php echo $archive ? 'Da' : 'Ne'; ?></p>
+            <p><strong>Prikazati na stranici:</strong> <?php echo $archive ? 'Ne' : 'Da'; ?></p>
         </article>
     </main>
 

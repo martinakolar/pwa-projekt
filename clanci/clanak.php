@@ -13,10 +13,12 @@ session_start(); ?>
     <title>Članak</title>
 </head>
 
-<body>
+<?php
+include '../header.php';
+?>
 
+<body class="bg-black text-white mx-auto">
     <?php
-    include '../header.php';
     include '../connect.php';
     define('UPLPATH', '../forma/uploads/');
 
@@ -30,19 +32,18 @@ session_start(); ?>
     ?>
 
         <!-- prikaz sadržaja članka -->
-        <section role="main">
+        <main class="max-w-screen-md mx-auto flex flex-col gap-y-4">
             <div class="row">
-                <h2 class="category">
+                <h2 class="text-sm uppercase text-red-500 font-bold">
                     <?php echo "<span>" . $row['kategorija'] . "</span>"; ?>
                 </h2>
-                <h1 class="title">
+                <h1 class="text-3xl uppercase">
                     <?php echo $row['naslov']; ?>
                 </h1>
-                <p>AUTOR:</p>
-                <p>OBJAVLJENO: <?php echo "<span>" . $row['datum'] . "</span>"; ?></p>
+                <p class="text-sm text-gray-300">OBJAVLJENO: <?php echo "<span>" . $row['datum'] . "</span>"; ?></p>
             </div>
             <section class="slika">
-                <?php echo '<img src="' . UPLPATH . $row['slika'] . '">'; ?>
+                <?php echo '<img class="w-full object-cover max-h-96" src="' . UPLPATH . $row['slika'] . '">'; ?>
             </section>
             <section class="about">
                 <p><?php echo "<i>" . $row['sazetak'] . "</i>"; ?></p>
@@ -50,7 +51,7 @@ session_start(); ?>
             <section class="sadrzaj">
                 <p><?php echo $row['tekst']; ?></p>
             </section>
-        </section>
+        </main>
 
     <?php
     } else {

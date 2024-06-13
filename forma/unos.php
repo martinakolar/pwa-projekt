@@ -31,7 +31,7 @@ if (!(isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESS
                 if (title.length < 5 || title.length > 50) {
                     slanjeForme = false;
                     poljeTitle.style.border = "1px dashed red";
-                    document.getElementById("porukaTitle").innerHTML = "Naslov vijesti mora imati između 5 i 50 znakova!<br>";
+                    document.getElementById("porukaTitle").innerHTML = "Naslov članka mora imati između 5 i 50 znakova!<br>";
                 } else {
                     poljeTitle.style.border = "1px solid green";
                     document.getElementById("porukaTitle").innerHTML = "";
@@ -97,39 +97,39 @@ if (!(isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESS
 
     <main class="max-w-screen-lg mx-auto">
         <section class="w-1/2 mx-auto">
-        <h1 class="text-2xl font-bold text-red-500">Unesite novu vijest</h1>
+        <h1 class="text-2xl font-bold text-red-500">Unesite novi članak</h1>
         <form action="skripta.php" method="POST" enctype="multipart/form-data" class="flex flex-col gap-y-2">
-            <!-- Naslov vijesti -->
+            <!-- Naslov članka -->
             <span id="porukaTitle" class="error-message"></span>
             <div class="form-item ">
-                <label for="title" class="">Naslov vijesti</label>
+                <label for="title" class="">Naslov članka</label>
                 <div class="form-field text-black">
                     <input type="text" id="title" name="title" class="form-field-textual w-full p-2" required>
                 </div>
             </div>
 
-            <!-- Kratki sažetak vijesti -->
+            <!-- Kratki sažetak članka -->
             <span id="porukaAbout" class="error-message"></span>
             <div class="form-item">
-                <label for="about">Kratki sadržaj vijesti (do 50 znakova)</label>
+                <label for="about">Kratki sadržaj članka (do 50 znakova)</label>
                 <div class="form-field w-full">
                     <textarea id="about" name="about" cols="30" rows="3" class="form-field-textual w-full p-2 text-black" required></textarea>
                 </div>
             </div>
 
-            <!-- Sadržaj vijesti -->
+            <!-- Sadržaj članka -->
             <span id="porukaContent" class="error-message"></span>
             <div class="form-item">
-                <label for="content">Sadržaj vijesti</label>
+                <label for="content">Sadržaj članka</label>
                 <div class="form-field">
                     <textarea id="content" name="content" cols="30" rows="10" class="form-field-textual w-full p-2 text-black" required></textarea>
                 </div>
             </div>
 
-            <!-- Kategorija vijesti -->
+            <!-- Kategorija članaka -->
             <span id="porukaKategorija" class="error-message"></span>
             <div class="form-item">
-                <label for="category">Kategorija vijesti</label>
+                <label for="category">Kategorija članka</label>
                 <div class="form-field">
                     <select id="category" name="category" class="form-field-textual w-1/2 p-2 text-black" required>
                         <option value="" disabled selected>Odaberite kategoriju</option>

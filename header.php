@@ -3,7 +3,7 @@
 }  ?>
 
 <header class="bg-black text-white flex flex-col w-full items-center mb-7">
-    <img class="w-16 h-16 m-4" src="/PWA-projekt/slike/maca.ico" alt="logo" id="logo">
+    <a href="/PWA-projekt/index.php"><img class="w-16 h-16 m-4" src="/PWA-projekt/slike/maca.ico" alt="logo" id="logo"></a>
     <nav class="navbar main_nav" role="navigation">
         <ul class="main nav navbar-nav flex gap-x-6">
             <li><a href="/PWA-projekt/index.php" class="">Početna</a></li>
