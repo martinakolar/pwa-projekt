@@ -1,8 +1,5 @@
 <?php
-session_start();
-$korisnicko_ime = $_SESSION['korisnicko_ime'];
-?>
-
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,9 +15,13 @@ $korisnicko_ime = $_SESSION['korisnicko_ime'];
 <body class="bg-black text-white">
     <?php include 'header.php'; ?>
     <div class="flex justify-center w-full">
-        <?php
 
-        echo "Dobrodošli, $korisnicko_ime!";
+        <?php
+        if (isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESSION['razina'] === 1) {
+            $korisnicko_ime = $_SESSION['korisnicko_ime'];
+            echo "Dobrodošli, $korisnicko_ime!";
+        }
+
         include 'connect.php';
         define('UPLPATH', 'forma/uploads/');
         ?> </div>
@@ -30,7 +31,7 @@ $korisnicko_ime = $_SESSION['korisnicko_ime'];
         <h2 class="text-2xl font-bold uppercase mb-3 ml-3 text-red-500">Odjeća</h2>
         <section class="flex gap-6">
             <?php
-            $query = "SELECT * FROM clanak WHERE arhiva=0 AND kategorija='odjeca' LIMIT 4";
+            $query = "SELECT * FROM clanak WHERE arhiva=0 AND kategorija='odjeca' ORDER BY datum DESC LIMIT 4";
             $result = mysqli_query($dbc, $query);
             $i = 0;
             while ($row = mysqli_fetch_array($result)) {
