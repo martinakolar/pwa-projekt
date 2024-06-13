@@ -92,7 +92,7 @@ if (isset($_SESSION['korisnicko_ime']) && isset($_SESSION['razina']) && $_SESSIO
             <div class="form-item">
                 <label for="photo">Slika:</label>
                 <div class="form-field">
-                    <input type="file" class="text-black p-2 w-full" id="photo" value="<?= $row['slika'] ?>" name="photo" required />
+                    <input type="file" class="text-black p-2 w-full" id="photo" value="<?= $row['slika'] ?>" name="photo"  />
                     <br>
                     <img src="<?= UPLPATH . $row['slika'] ?> " width="100px">
                     <!-- pokraj gumba za odabir slike pojavljuje se umanjeni prikaz postojeće slike -->

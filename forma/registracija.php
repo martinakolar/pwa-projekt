@@ -42,6 +42,7 @@ session_start(); ?>
                 mysqli_stmt_store_result($stmt);
             }
 
+            echo "<div class='flex justify-center'>";
             if (mysqli_stmt_num_rows($stmt) > 0) {
                 echo 'Korisničko ime već postoji!';
             } else {
@@ -57,6 +58,7 @@ session_start(); ?>
         } else {
             echo 'Lozinke se ne podudaraju!';
         }
+        echo "</div>";
 
         mysqli_close($dbc);
     }
